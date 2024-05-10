@@ -6,6 +6,8 @@ import re
 # \s whitespace \S non-whitspace
 # + 1 or more
 # * 0 or more
+# [] set of char
+# {} a number of instances
 
 string = "called piiig"
 pat = re.compile("iig")
@@ -117,3 +119,9 @@ print(result.group())
 print(result.group(1))
 print(result.group(2))
 print(result.groups())
+
+string = "Card Number: 1234123412341234 CVV: 123"
+pat = re.compile("(Card Number:) (?P<num>\d{16}) (CVV:) (?P<cvv>\d{3,4})")
+result = pat.match(string)
+print(result.group("num"))
+print(result.group("cvv"))
